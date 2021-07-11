@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Pokedex.Repositories;
 using Pokedex.Services;
 using Refit;
 
@@ -22,8 +23,8 @@ namespace Pokedex
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRefitClient<IPokeRefit>().ConfigureHttpClient(c => c.BaseAddress = new Uri("https://pokeapi.co/api/v2"));
-            services.AddTransient<IPokeService, PokeService>();
+            services.AddRefitClient<IPokemonRepo>().ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetValue<string>("Pokeapi:baseAddress")));
+            services.AddTransient<IPokemonService, PokemonService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

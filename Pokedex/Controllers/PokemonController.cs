@@ -20,12 +20,12 @@ namespace Pokedex.Controllers
         };
 
         private readonly ILogger<PokemonController> _logger;
-        private readonly IPokeService _pokeService;
+        private readonly IPokemonService _pokemonService;
 
-        public PokemonController(ILogger<PokemonController> logger, IPokeService pokeService)
+        public PokemonController(ILogger<PokemonController> logger, IPokemonService pokemonService)
         {
             _logger = logger;
-            _pokeService = pokeService;
+            _pokemonService = pokemonService;
         }
 
         [HttpGet]
@@ -33,7 +33,7 @@ namespace Pokedex.Controllers
         public async Task<Pokemon> Get([Required]string name)
         {
             // validate/sanitize name
-            return await _pokeService.Get(name);
+            return await _pokemonService.Get(name);
         }
     }
 }

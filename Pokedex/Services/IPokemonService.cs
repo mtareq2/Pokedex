@@ -5,7 +5,7 @@ using Refit;
 
 namespace Pokedex.Services
 {
-    public interface IPokeService
+    public interface IPokemonService
     {
         Task<Pokemon> Get(string name);
     }

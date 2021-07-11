@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Pokedex.Models;
 using Refit;
 
-namespace Pokedex.Services
+namespace Pokedex.Repositories
 {
-    public interface IPokeRefit
+    public interface IPokemonRepo
     {
         [Get("/pokemon-species/{name}")]
         Task<Pokemon> Get(string name);
