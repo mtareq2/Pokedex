@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Pokedex.Models;
 using Pokedex.Repositories;
 
@@ -8,14 +9,18 @@ namespace Pokedex.Services
     {
 
         private readonly IPokemonRepo _pokemonRepo;
-        public PokemonService(IPokemonRepo pokemonRepo)
+        private readonly IMapper _mapper;
+
+        public PokemonService(IPokemonRepo pokemonRepo, IMapper mapper)
         {
             _pokemonRepo = pokemonRepo;
+            _mapper = mapper;
         }
 
         public async Task<Pokemon> Get(string name)
         {
-            var pokemon = await _pokemonRepo.Get(name);
+            var pokemonDto = await _pokemonRepo.Get(name);
+            var pokemon = _mapper.Map<Pokemon>(pokemonDto);
 
             return pokemon;
         }

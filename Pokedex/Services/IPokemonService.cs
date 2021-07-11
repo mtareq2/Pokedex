@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Pokedex.Models;
-using Refit;
 
 namespace Pokedex.Services
 {

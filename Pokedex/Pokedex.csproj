@@ -8,6 +8,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="Refit" Version="6.0.38" />
     <PackageReference Include="Refit.HttpClientFactory" Version="6.0.38" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,11 +19,17 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="Refit.HttpClientFactory" />
     <None Remove="Repositories\" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="AutoMapper" />
+    <None Remove="MapperProfiles\" />
+    <None Remove="DTOs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
+    <Folder Include="MapperProfiles\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Services\PokeService.cs">
