@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,11 +11,6 @@ namespace Pokedex.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<PokemonController> _logger;
         private readonly IPokemonService _pokemonService;
 
@@ -34,6 +26,15 @@ namespace Pokedex.Controllers
         {
             // validate/sanitize name
             return await _pokemonService.Get(name);
+        }
+
+        [HttpGet]
+        [Route("~/[controller]/translated/{name}")]
+        public async Task<Pokemon> Translated([Required] string name)
+        {
+            // validate/sanitize name
+            return await _pokemonService.GetTranslated(name);
+
         }
     }
 }

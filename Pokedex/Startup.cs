@@ -24,7 +24,8 @@ namespace Pokedex
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddRefitClient<IPokemonRepo>().ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetValue<string>("Pokeapi:baseAddress")));
+            services.AddRefitClient<IPokemonRepo>().ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetValue<string>("PokeApi:baseAddress")));
+            services.AddRefitClient<ITranslateRepo>().ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetValue<string>("FunTranslatoinApi:baseAddress")));
             services.AddTransient<IPokemonService, PokemonService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
