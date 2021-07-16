@@ -24,7 +24,6 @@ namespace Pokedex.Controllers
         [Route("~/[controller]/{name}")]
         public async Task<Pokemon> Get([Required]string name)
         {
-            // validate/sanitize name
             return await _pokemonService.Get(name);
         }
 
@@ -32,7 +31,6 @@ namespace Pokedex.Controllers
         [Route("~/[controller]/translated/{name}")]
         public async Task<Pokemon> Translated([Required] string name)
         {
-            // validate/sanitize name
             return await _pokemonService.GetTranslated(name);
 
         }

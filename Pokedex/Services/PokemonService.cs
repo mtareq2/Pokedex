@@ -22,6 +22,8 @@ namespace Pokedex.Services
 
         public async Task<Pokemon> Get(string name)
         {
+            // Use caching (e.g. redis) to enhance performance and
+            // avoid hiting the Pokeapi if we have the result cached
             var pokemonDto = await _pokemonRepo.Get(name);
             var pokemon = _mapper.Map<Pokemon>(pokemonDto);
 
@@ -30,6 +32,7 @@ namespace Pokedex.Services
 
         public async Task<Pokemon> GetTranslated(string name)
         {
+            // Ditto, use caching
             var pokemon = await this.Get(name);
             pokemon.Description = await getTranslatedPokemonDescription(pokemon);
 
@@ -45,7 +48,7 @@ namespace Pokedex.Services
                 return string.Empty;
             }
 
-            // In Mac response has extra /n which makes FunTranslate function fail 
+            // In Mac OS response has extra /n which makes FunTranslate function fail! 
             pokemonDescription = pokemonDescription.Replace(System.Environment.NewLine, " ");
 
             const string CaveHabitat = "cave";
